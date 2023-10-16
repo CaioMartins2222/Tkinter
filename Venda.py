@@ -47,14 +47,14 @@ def abrir_janela_venda():
     valor_rotulo.place(x=50, y=138)
 
     # Data da venda
-    valor = tk.Entry(janela, font=14, width=12)
-    valor.pack()
-    valor.place(x=163, y=160)
+    data = tk.Entry(janela, font=14, width=12)
+    data.pack()
+    data.place(x=163, y=160)
 
     # Rotulo data da venda
-    valor_rotulo = tk.Label(janela, text="Data:", bg="#FFE8E5")
-    valor_rotulo.pack()
-    valor_rotulo.place(x=164, y=138)
+    data_rotulo = tk.Label(janela, text="Data:", bg="#FFE8E5")
+    data_rotulo.pack()
+    data_rotulo.place(x=164, y=138)
 
     # Nome
     nome_completo = tk.Entry(janela, font=14, width=23)
@@ -68,6 +68,20 @@ def abrir_janela_venda():
 
     def salvar_cadastro_venda():
         # Implemente a lógica de salvamento aqui
+        codigo_valor = codigo.get()
+        produto_valor = produto.get()
+        valor_produto = valor.get()
+        data_venda = data.get()
+        cliente_nome = nome_completo.get()
+
+        # Aqui você pode fazer o que quiser com os valores,
+        # como salvar em um banco de dados, exibir em uma mensagem, etc.
+
+        print("Código:", codigo_valor)
+        print("Produto:", produto_valor)
+        print("Valor do Produto:", valor_produto)
+        print("Data da Venda:", data_venda)
+        print("Cliente:", cliente_nome)
         janela.destroy()
 
     def cancelar_cadastro_venda():

@@ -138,6 +138,19 @@ def abrir_janela_cadastro():
 
     def salvar_cadastro():
         # Implemente a lógica de salvamento aqui
+        nome = nome_completo.get()
+        data_nascimento = nascimento.get()
+        genero = "Feminino" if sexo.get() == 2 else "Masculino"
+        email_valor = email.get()
+        endereco_rua = rua.get()
+        numero_casa = numero.get()
+        cidade_valor = cidade.get()
+        uf_valor = uf.get()
+        cep_valor = cep.get()
+        id_valor = id.get()
+        ddd_celular = celular_ddd.get()
+        numero_celular = celular.get()
+
         janela.destroy()
 
     def cancelar_cadastro():
