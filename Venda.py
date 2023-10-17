@@ -68,33 +68,25 @@ def abrir_janela_venda():
 
     def salvar_cadastro_venda():
         # Implemente a lógica de salvamento aqui
-        codigo_valor = codigo.get()
-        produto_valor = produto.get()
-        valor_produto = valor.get()
+        codigo_valor = tk.IntVar = codigo.get()
+        produto_nome = tk.StringVar = produto.get()
+        valor_produto = tk.DoubleVar = valor.get()
         data_venda = data.get()
-        cliente_nome = nome_completo.get()
+        cliente_nome = tk.StringVar = nome_completo.get()
 
         # Aqui você pode fazer o que quiser com os valores,
-        # como salvar em um banco de dados, exibir em uma mensagem, etc.
-
-        print("Código:", codigo_valor)
-        print("Produto:", produto_valor)
-        print("Valor do Produto:", valor_produto)
-        print("Data da Venda:", data_venda)
-        print("Cliente:", cliente_nome)
-        janela.destroy()
 
     def cancelar_cadastro_venda():
         janela.destroy()
 
-    button_cancelar = tk.Button(janela, text="Cancelar", font=("Cooper Black", 10), bg="#FC0FC0", fg="white", command= cancelar_cadastro_venda)
+    button_cancelar = tk.Button(janela, text="Cancelar", font=("Cooper Black", 10), bg="#FC0FC0", fg="white",
+                                command=cancelar_cadastro_venda)
     button_cancelar.pack()
     button_cancelar.place(x=400, y=200)
     button_cancelar.config(width=9, height=1)
 
-    button_salvar = tk.Button(janela, text="Salvar", font=("Cooper Black", 10), bg="#FC0FC0", fg="white", command= salvar_cadastro_venda)
+    button_salvar = tk.Button(janela, text="Salvar", font=("Cooper Black", 10), bg="#FC0FC0", fg="white",
+                              command=salvar_cadastro_venda)
     button_salvar.pack()
     button_salvar.place(x=495, y=200)
     button_salvar.config(width=9, height=1)
-
-

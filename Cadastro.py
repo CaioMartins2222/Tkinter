@@ -1,5 +1,10 @@
-
+import datetime
 import tkinter as tk
+from calendar import calendar
+from time import strptime, strftime
+from tkinter import FLAT, END
+
+from tkcalendar import Calendar
 
 
 def abrir_janela_cadastro():
@@ -27,10 +32,27 @@ def abrir_janela_cadastro():
     nome_rotulo.pack()
     nome_rotulo.place(x=48, y=56)
 
-    # Nascimeto
-    nascimento = tk.Entry(janela, font=14, width=13)
-    nascimento.pack()
-    nascimento.place(x=50, y=135)
+    def pick_date(event):
+        global cal, date_window
+        date_window = tk.Toplevel()
+        date_window.grab_set()
+        date_window.geometry("250x220+590+370")
+        cal = Calendar(date_window, selectmode="day", date_pattern="mm/dd/y")
+        cal.place(x=0, y=0)
+
+        submit_btn = tk.Button(date_window, text="Salvar", command=grab_date)
+        submit_btn.place(x=80, y=190)
+
+    def grab_date():
+        nasc_entry.delete(0, END)
+        nasc_entry.insert(0, cal.get_date())
+        date_window.destroy()
+
+    nasc_entry = tk.Entry(janela, highlightthickness=0, relief=FLAT, bg="white", fg="#6b6a69",
+                          font=("Helvetica", 11, "bold"))
+    nasc_entry.place(x=49, y=135, width=100)
+    nasc_entry.insert(0, "dd/mm/yyyy")
+    nasc_entry.bind("<1>", pick_date)
 
     # Rotulo nascimento
     nascimento_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Nascimento:", bg="#FFE8E5")
@@ -38,10 +60,20 @@ def abrir_janela_cadastro():
     nascimento_rotulo.place(x=48, y=110)
 
     # Botao Feminino
-    sexo = tk.BooleanVar()
 
-    tk.Radiobutton(janela, text="F", value=2, variable=sexo, bg="#FFE8E5", command=lambda: print(sexo.get())).place(x=190, y=136)
-    tk.Radiobutton(janela, text="M", value=1, bg="#FFE8E5", variable=sexo).place(x=243, y=136)
+    def on_enter(event):
+        event.widget.config(state=tk.NORMAL)
+
+    def on_leave(event):
+        event.widget.config(state=tk.DISABLED)
+
+    sexo = tk.IntVar()
+    sexo.set(1)
+
+    tk.Label(janela, text="Escolha o sexo:", bg="#FFE8E5").place(x=180, y=110)
+    tk.Radiobutton(janela, text="F", value=2, variable=sexo, bg="#FFE8E5").place(x=175, y=136)
+    tk.Radiobutton(janela, text="M", value=1, bg="#FFE8E5", variable=sexo).place(x=228, y=136)
+
 
     # Email
     email = tk.Entry(janela, font=14, width=30)
@@ -49,7 +81,7 @@ def abrir_janela_cadastro():
     email.place(x=301, y=135)
 
     # Email Rotulo
-    email_rotulo = tk.Label(janela, font=("Helvetica", 10), text="E-mail:", bg="#FFE8E5",)
+    email_rotulo = tk.Label(janela, font=("Helvetica", 10), text="E-mail:", bg="#FFE8E5", )
     email_rotulo.pack()
     email_rotulo.place(x=298, y=110)
 
@@ -59,7 +91,7 @@ def abrir_janela_cadastro():
     rua.place(x=50, y=190)
 
     # Rua rotulo
-    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Rua:", bg="#FFE8E5",)
+    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Rua:", bg="#FFE8E5", )
     rua_rotulo.pack()
     rua_rotulo.place(x=48, y=165)
 
@@ -69,7 +101,7 @@ def abrir_janela_cadastro():
     numero.place(x=516, y=190)
 
     # Numero rotulo
-    numero_rotulo = tk.Label(janela, font=("Helvetica", 10), text="N°:", bg="#FFE8E5",)
+    numero_rotulo = tk.Label(janela, font=("Helvetica", 10), text="N°:", bg="#FFE8E5", )
     numero_rotulo.pack()
     numero_rotulo.place(x=514, y=165)
 
@@ -80,7 +112,7 @@ def abrir_janela_cadastro():
 
     # Cidade rotulo
 
-    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Cidade:", bg="#FFE8E5",)
+    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Cidade:", bg="#FFE8E5", )
     rua_rotulo.pack()
     rua_rotulo.place(x=48, y=225)
 
@@ -90,7 +122,7 @@ def abrir_janela_cadastro():
     uf.place(x=295, y=250)
 
     # Uf rotulo
-    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="UF:", bg="#FFE8E5",)
+    rua_rotulo = tk.Label(janela, font=("Helvetica", 10), text="UF:", bg="#FFE8E5", )
     rua_rotulo.pack()
     rua_rotulo.place(x=293, y=225)
 
@@ -100,7 +132,7 @@ def abrir_janela_cadastro():
     cep.place(x=381, y=250)
 
     # Cep Rotulo
-    cep_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Cep:", bg="#FFE8E5",)
+    cep_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Cep:", bg="#FFE8E5", )
     cep_rotulo.pack()
     cep_rotulo.place(x=379, y=225)
 
@@ -111,7 +143,7 @@ def abrir_janela_cadastro():
 
     # ID rotulo
 
-    id_rotulo = tk.Label(janela, font=("Helvetica", 10),  text="ID:", bg="#FFE8E5",)
+    id_rotulo = tk.Label(janela, font=("Helvetica", 10), text="ID:", bg="#FFE8E5", )
     id_rotulo.pack()
     id_rotulo.place(x=48, y=285)
 
@@ -122,7 +154,7 @@ def abrir_janela_cadastro():
 
     # Celular DDD rotulo
 
-    celular_Ddd_rotulo = tk.Label(janela, font=("Helvetica", 10), text="DDD:", bg="#FFE8E5",)
+    celular_Ddd_rotulo = tk.Label(janela, font=("Helvetica", 10), text="DDD:", bg="#FFE8E5", )
     celular_Ddd_rotulo.pack()
     celular_Ddd_rotulo.place(x=293, y=285)
 
@@ -132,24 +164,24 @@ def abrir_janela_cadastro():
     celular.place(x=381, y=310)
 
     # Celular rotulo
-    celular_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Celular:", bg="#FFE8E5",)
+    celular_rotulo = tk.Label(janela, font=("Helvetica", 10), text="Celular:", bg="#FFE8E5", )
     celular_rotulo.pack()
     celular_rotulo.place(x=379, y=285)
 
     def salvar_cadastro():
-        # Implemente a lógica de salvamento aqui
-        nome = nome_completo.get()
-        data_nascimento = nascimento.get()
-        genero = "Feminino" if sexo.get() == 2 else "Masculino"
-        email_valor = email.get()
-        endereco_rua = rua.get()
-        numero_casa = numero.get()
-        cidade_valor = cidade.get()
-        uf_valor = uf.get()
-        cep_valor = cep.get()
-        id_valor = id.get()
+        nome_valor = tk.StringVar = nome_completo.get()
+        nascimento = tk.StringVar = nasc_entry.get()
+        email_valor = tk.StringVar = email.get()
+        endereco_rua = tk.StringVar = rua.get()
+        numero_casa = tk.IntVar = numero.get()
+        cidade_valor = tk.StringVar = cidade.get()
+        uf_valor = tk.StringVar = uf.get()
+        cep_valor = tk.StringVar = cep.get()
+        id_valor = tk.IntVar = id.get()
         ddd_celular = celular_ddd.get()
         numero_celular = celular.get()
+        telefone = tk.StringVar = ddd_celular + numero_celular
+
 
         janela.destroy()
 
@@ -169,5 +201,3 @@ def abrir_janela_cadastro():
     button_salvar.pack()
     button_salvar.place(x=540, y=370)
     button_salvar.config(width=9, height=2)
-
-

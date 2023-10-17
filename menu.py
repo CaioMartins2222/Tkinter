@@ -2,6 +2,7 @@ from Cadastro import abrir_janela_cadastro
 import tkinter as tk
 from Venda import abrir_janela_venda
 
+
 menu = tk.Tk()
 menu.title("Menu Clientes")
 menu.geometry("700x435+660+250")
@@ -28,6 +29,7 @@ nome_rotulo = tk.Label(menu, text="Nome:", font=("Helvetica", 11), bg="#FFE8E5")
 nome_rotulo.pack()
 nome_rotulo.place(x=190, y=59)
 
+
 # Data
 data = tk.Entry(menu, font=14, width=12)
 data.pack()
@@ -37,8 +39,6 @@ data.place(x=90, y=110)
 data_rotulo = tk.Label(menu, text="Data:", font=("Helvetica", 11), bg="#FFE8E5")
 data_rotulo.pack()
 data_rotulo.place(x=45, y=110)
-
-
 
 # Pesquisar
 button_pesquisar = tk.Button(menu, text="Pesquisar", font=("Cooper Black", 12), bg="#EB0DAD", fg="White")
